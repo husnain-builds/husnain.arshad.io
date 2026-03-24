@@ -17,12 +17,12 @@ export function SiteFooter() {
           >
             Projects
           </Link>
-          <Link
+          {/* <Link
             className="hover:text-zinc-950 dark:hover:text-zinc-50"
             href="/blog"
           >
             Blog
-          </Link>
+          </Link> */}
         </div>
       </Container>
     </footer>

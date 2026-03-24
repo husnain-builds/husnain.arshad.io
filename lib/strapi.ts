@@ -196,3 +196,15 @@ export function isStrapiConfigured() {
   return Boolean(getStrapiUrl());
 }
 
+export function getStrapiErrorMessage(error: unknown) {
+  if (!(error instanceof Error)) {
+    return "Strapi content is temporarily unavailable.";
+  }
+
+  if (error.message.includes("Missing STRAPI_URL")) {
+    return "Strapi is not configured right now.";
+  }
+
+  return "Strapi content is temporarily unavailable.";
+}
+

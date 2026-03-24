@@ -1,0 +1,125 @@
+[
+  {
+    "title": "OpenLetter Connect",
+    "slug": "openletter-connect",
+    "description": "A mailing automation platform where users create templates, manage contacts, and execute mailing campaigns.",
+    "longDescription": "Developed a scalable mailing platform enabling users to create templates, manage contacts, and place orders. Enhanced the system using agentic microservices where user goals trigger automated workflows handled by agents responsible for order creation, contact processing, and dispatch.",
+    "techStack": [
+      "React.js",
+      "Node.js",
+      "Microservices",
+      "PostgreSQL",
+      "REST APIs"
+    ],
+    "features": [
+      "Template creation system",
+      "Contact management",
+      "Order creation and tracking",
+      "Agent-driven workflow automation",
+      "Campaign dispatch system"
+    ],
+    "agentic": true,
+    "role": "Frontend / Full Stack Engineer",
+    "year": "2022-2024"
+  },
+  {
+    "title": "InvoTeams",
+    "slug": "invoteams",
+    "description": "A collaborative project management platform similar to freelance marketplaces.",
+    "longDescription": "Built dashboards and task workflows for team collaboration. Integrated APIs and optimized performance for real-time updates.",
+    "techStack": [
+      "React.js",
+      "Node.js",
+      "Redis",
+      "PostgreSQL"
+    ],
+    "features": [
+      "Task management dashboards",
+      "Real-time updates",
+      "API integrations",
+      "Performance optimization"
+    ],
+    "agentic": false,
+    "role": "Frontend Engineer",
+    "year": "2023"
+  },
+  {
+    "title": "Predicto",
+    "slug": "predicto",
+    "description": "A prediction marketplace where users forecast outcomes.",
+    "longDescription": "Developed dynamic UI using React and Redux with real-time API integrations to support prediction-based interactions.",
+    "techStack": [
+      "React.js",
+      "Redux",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "features": [
+      "Prediction system",
+      "Dynamic UI updates",
+      "State management with Redux"
+    ],
+    "agentic": false,
+    "role": "Frontend Engineer",
+    "year": "2023"
+  },
+  {
+    "title": "InvoCom",
+    "slug": "invocom",
+    "description": "A customer communication and knowledge base platform.",
+    "longDescription": "Developed promotional website using Gatsby and Strapi CMS with GraphQL integration.",
+    "techStack": [
+      "React.js",
+      "Gatsby.js",
+      "Strapi",
+      "GraphQL"
+    ],
+    "features": [
+      "CMS-driven content",
+      "GraphQL integration",
+      "Responsive UI"
+    ],
+    "agentic": false,
+    "role": "Frontend Engineer",
+    "year": "2022"
+  },
+  {
+    "title": "QuickXi",
+    "slug": "quickxi",
+    "description": "An online platform builder for creating stores quickly.",
+    "longDescription": "Built promotional website using Gatsby and Strapi with focus on performance and responsiveness.",
+    "techStack": [
+      "React.js",
+      "Gatsby.js",
+      "Strapi",
+      "GraphQL"
+    ],
+    "features": [
+      "Store builder UI",
+      "CMS integration",
+      "Responsive design"
+    ],
+    "agentic": false,
+    "role": "Frontend Engineer",
+    "year": "2022"
+  },
+  {
+    "title": "Involympics",
+    "slug": "involympics",
+    "description": "An internal sports management platform.",
+    "longDescription": "Developed features for player registration, team drafting, and admin dashboards for managing events.",
+    "techStack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "features": [
+      "Player registration",
+      "Team drafting",
+      "Admin dashboard"
+    ],
+    "agentic": false,
+    "role": "Frontend Engineer",
+    "year": "2022"
+  }
+]

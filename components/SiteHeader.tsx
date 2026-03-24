@@ -6,7 +6,7 @@ import { Container } from "@/components/Container";
 
 const nav = [
   { href: "/projects", label: "Projects" },
-  { href: "/blog", label: "Blog" },
+  // { href: "/blog", label: "Blog" },
 ] as const;
 
 export function SiteHeader() {
