@@ -37,6 +37,14 @@ function getStrapiUrl() {
   return url.replace(/\/+$/, "");
 }
 
+function summarizeResponseBody(body: string, maxLength = 180) {
+  const normalized = body.replace(/\s+/g, " ").trim();
+  if (!normalized) return "Empty response body";
+  return normalized.length > maxLength
+    ? `${normalized.slice(0, maxLength)}...`
+    : normalized;
+}
+
 async function strapiRequest<T>(path: string, init?: RequestInit): Promise<T> {
   const base = getStrapiUrl();
   if (!base) {
@@ -54,11 +62,28 @@ async function strapiRequest<T>(path: string, init?: RequestInit): Promise<T> {
     next: { revalidate: 60 },
   });
 
+  const contentType = res.headers.get("content-type") ?? "";
+  const text = await res.text().catch(() => "");
+
   if (!res.ok) {
-    const text = await res.text().catch(() => "");
-    throw new Error(`Strapi request failed (${res.status}): ${text}`);
+    throw new Error(
+      `Strapi request failed (${res.status}) for ${path}: ${summarizeResponseBody(text)}`,
+    );
   }
-  return (await res.json()) as T;
+
+  if (!contentType.toLowerCase().includes("application/json")) {
+    throw new Error(
+      `Strapi returned ${contentType || "an unknown content type"} for ${path} instead of JSON: ${summarizeResponseBody(text)}`,
+    );
+  }
+
+  try {
+    return JSON.parse(text) as T;
+  } catch (error) {
+    throw new Error(
+      `Strapi returned invalid JSON for ${path}: ${error instanceof Error ? error.message : "Unknown parse error"}`,
+    );
+  }
 }
 
 export type ProjectAttributes = {

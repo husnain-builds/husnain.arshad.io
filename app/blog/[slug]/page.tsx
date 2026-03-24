@@ -13,32 +13,19 @@ export default async function BlogPostPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  if (!isStrapiConfigured()) {
-    return (
-      <main className="py-10 sm:py-14">
-        <Container className="flex flex-col gap-6">
-          <Link
-            href="/blog"
-            className="text-sm font-medium text-zinc-600 hover:underline dark:text-zinc-300"
-          >
-            ← Blog
-          </Link>
-          <Card className="border-zinc-200/70 bg-white/60 backdrop-blur dark:border-zinc-800/70 dark:bg-zinc-900/35">
-            <h1 className="text-lg font-semibold">Connect Strapi</h1>
-            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
-              Set <code className="font-mono">STRAPI_URL</code> in{" "}
-              <code className="font-mono">my-app/.env.local</code> and restart
-              the dev server.
-            </p>
-          </Card>
-        </Container>
-      </main>
-    );
-  }
+  if (!isStrapiConfigured()) notFound();
 
   const { slug } = await params;
-  const res = await getPostBySlug(slug);
-  const postEntity = res.data[0];
+
+  let postEntity: Awaited<ReturnType<typeof getPostBySlug>>["data"][number] | undefined;
+
+  try {
+    const res = await getPostBySlug(slug);
+    postEntity = res.data[0];
+  } catch {
+    notFound();
+  }
+
   if (!postEntity) notFound();
   const post = entityAttributes(postEntity);
 

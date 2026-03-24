@@ -7,34 +7,25 @@ export const revalidate = 60;
 
 export default async function BlogPage() {
   if (!isStrapiConfigured()) {
-    return (
-      <main className="py-12">
-        <Container>
-          <h1 className="text-3xl font-semibold tracking-tight">Blog</h1>
-          <Card className="mt-6 border-zinc-200/70 bg-white/60 backdrop-blur dark:border-zinc-800/70 dark:bg-zinc-900/35">
-            <h2 className="text-lg font-semibold">Connect Strapi</h2>
-            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
-              Set <code className="font-mono">STRAPI_URL</code> in{" "}
-              <code className="font-mono">my-app/.env.local</code> (for example{" "}
-              <code className="font-mono">http://localhost:1337</code>) and
-              restart the dev server.
-            </p>
-          </Card>
-        </Container>
-      </main>
-    );
+    return renderBlogPage([]);
   }
 
-  const res = await getPosts();
-  const posts = res.data;
+  try {
+    const res = await getPosts();
+    return renderBlogPage(res.data);
+  } catch {
+    return renderBlogPage([]);
+  }
+}
 
+function renderBlogPage(posts: Awaited<ReturnType<typeof getPosts>>["data"]) {
   return (
     <main className="py-10 sm:py-14">
       <Container>
         <div className="flex flex-col gap-2">
           <h1 className="text-3xl font-semibold tracking-tight">Blog</h1>
           <p className="max-w-2xl text-zinc-600 dark:text-zinc-300">
-            Articles pulled dynamically from Strapi.
+            Notes, articles, and experiments.
           </p>
         </div>
 
