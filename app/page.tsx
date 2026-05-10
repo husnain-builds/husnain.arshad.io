@@ -137,13 +137,6 @@ export default function Home() {
               <h2 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
                 Tools &amp; practices
               </h2>
-              <p className="mt-2 max-w-xl text-sm text-zinc-600 dark:text-zinc-300">
-                Curated list in{" "}
-                <code className="rounded bg-zinc-200/80 px-1.5 py-0.5 font-mono text-xs dark:bg-zinc-800/80">
-                  utils/skills.json
-                </code>
-                — edit there to update the marquee.
-              </p>
               <div className="mt-6">
                 <SkillsMarquee />
               </div>
