@@ -1,98 +1,113 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { SkillIcon } from "@/components/SkillIcon";
+
+/** Skills with icon mappings — evenly spaced on a calm orbit */
+const HERO_ORBIT_SKILLS = [
+  "TypeScript",
+  "React.js",
+  "Next.js",
+  "Node.js",
+  "Tailwind CSS",
+  "Git",
+] as const;
 
 export function ProfileHeroMotion() {
   const reduce = useReducedMotion();
 
-  const slow = reduce ? 0 : 28;
-  const slower = reduce ? 0 : 38;
+  const ringSlow = reduce ? 0 : 56;
+  const ringCounter = reduce ? 0 : 72;
+  const orbitDuration = reduce ? 0 : 72;
+  const innerGlow = reduce ? 0 : 96;
 
   return (
     <div className="absolute inset-0 overflow-hidden rounded-full">
-      {/* background glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.10),transparent_45%),radial-gradient(circle_at_70%_70%,rgba(249,115,22,0.10),transparent_55%),radial-gradient(circle_at_50%_50%,rgba(124,58,237,0.12),transparent_60%)]" />
+      {/* soft base wash */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_25%,rgba(255,255,255,0.07),transparent_50%),radial-gradient(circle_at_72%_68%,rgba(249,115,22,0.06),transparent_52%),radial-gradient(circle_at_48%_50%,rgba(124,58,237,0.07),transparent_58%)]" />
 
-      {/* rotating gradient ring */}
+      {/* outer aura — very low contrast */}
       <motion.div
-        className="absolute -inset-6 rounded-full bg-[conic-gradient(from_0deg,rgba(249,115,22,0.55),rgba(124,58,237,0.40),rgba(96,165,250,0.35),rgba(249,115,22,0.55))] opacity-80 blur-[1px]"
+        className="absolute -inset-5 rounded-full bg-[conic-gradient(from_200deg,rgba(249,115,22,0.14),rgba(124,58,237,0.12),rgba(59,130,246,0.08),rgba(249,115,22,0.14))] opacity-70 blur-[2px]"
+        animate={reduce ? undefined : { rotate: 360 }}
+        transition={
+          reduce ? undefined : { duration: ringSlow, ease: "linear", repeat: Infinity }
+        }
+      />
+
+      {/* fine outer ring */}
+      <motion.div
+        className="absolute inset-2 rounded-full border border-white/7"
+        animate={reduce ? undefined : { rotate: -360 }}
+        transition={
+          reduce ? undefined : { duration: ringCounter, ease: "linear", repeat: Infinity }
+        }
+      />
+
+      {/* dashed orbit guide */}
+      <div
+        className="pointer-events-none absolute inset-[12%] rounded-full border border-dashed border-white/6"
+        aria-hidden
+      />
+
+      {/* inner glass — subtle breathing only */}
+      <motion.div
+        className="absolute inset-[10%] z-0 rounded-full border border-white/8 bg-white/4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
+        animate={reduce ? undefined : { scale: [1, 1.008, 1] }}
+        transition={
+          reduce ? undefined : { duration: 5.5, repeat: Infinity, ease: "easeInOut" }
+        }
+      >
+        <motion.div
+          className="absolute inset-[20%] rounded-[42%] bg-[radial-gradient(circle_at_32%_22%,rgba(255,255,255,0.12),transparent_58%),radial-gradient(circle_at_62%_72%,rgba(124,58,237,0.2),transparent_62%),radial-gradient(circle_at_50%_48%,rgba(249,115,22,0.08),transparent_55%)] opacity-[0.55]"
+          animate={reduce ? undefined : { rotate: 360 }}
+          transition={
+            reduce ? undefined : { duration: innerGlow, ease: "linear", repeat: Infinity }
+          }
+        />
+        <div className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-white/5" />
+      </motion.div>
+
+      {/* skill chips — slow orbit, counter-rotated for upright marks */}
+      <motion.div
+        className="pointer-events-none absolute inset-[12%] z-20"
         animate={reduce ? undefined : { rotate: 360 }}
         transition={
           reduce
             ? undefined
-            : { duration: slower, ease: "linear", repeat: Infinity }
+            : { duration: orbitDuration, ease: "linear", repeat: Infinity }
         }
-      />
-
-      {/* orbital ring */}
-      <motion.div
-        className="absolute inset-3 rounded-full border border-white/10"
-        animate={reduce ? undefined : { rotate: -360 }}
-        transition={
-          reduce ? undefined : { duration: slow, ease: "linear", repeat: Infinity }
-        }
-        style={{
-          transform: "rotateX(22deg) rotateZ(12deg)",
-        }}
-      />
-
-      {/* floating dots */}
-      <motion.div
-        className="absolute inset-0"
-        animate={reduce ? undefined : { rotate: 360 }}
-        transition={
-          reduce ? undefined : { duration: 22, ease: "linear", repeat: Infinity }
-        }
-        style={{ transformOrigin: "50% 50%" }}
+        aria-hidden
       >
-        {[
-          { top: "16%", left: "62%", s: 10, o: "bg-orange-400/90" },
-          { top: "26%", left: "18%", s: 8, o: "bg-violet-400/80" },
-          { top: "62%", left: "78%", s: 7, o: "bg-blue-300/80" },
-          { top: "72%", left: "24%", s: 9, o: "bg-orange-300/80" },
-        ].map((d, i) => (
-          <motion.div
-            key={i}
-            className={`absolute rounded-full ${d.o}`}
-            style={{
-              top: d.top,
-              left: d.left,
-              width: d.s,
-              height: d.s,
-              filter: "drop-shadow(0 0 12px rgba(249,115,22,0.35))",
-            }}
-            animate={reduce ? undefined : { y: [0, -6, 0] }}
-            transition={
-              reduce
-                ? undefined
-                : { duration: 2.8 + i * 0.35, repeat: Infinity, ease: "easeInOut" }
-            }
-          />
-        ))}
-      </motion.div>
-
-      {/* inner glass */}
-      <motion.div
-        className="absolute inset-[10%] rounded-full border border-white/10 bg-white/5 shadow-xl"
-        animate={reduce ? undefined : { scale: [1, 1.02, 1] }}
-        transition={
-          reduce ? undefined : { duration: 3.2, repeat: Infinity, ease: "easeInOut" }
-        }
-      >
-        {/* inner shape */}
-        <motion.div
-          className="absolute inset-[18%] rounded-[40%] bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.35),transparent_55%),radial-gradient(circle_at_60%_70%,rgba(124,58,237,0.55),transparent_60%),radial-gradient(circle_at_50%_50%,rgba(249,115,22,0.35),transparent_55%)] opacity-90"
-          animate={reduce ? undefined : { rotate: 360 }}
-          transition={
-            reduce
-              ? undefined
-              : { duration: 18, ease: "linear", repeat: Infinity }
-          }
-          style={{ filter: "blur(0.5px)" }}
-        />
-        <div className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-white/10" />
+        {HERO_ORBIT_SKILLS.map((name, i) => {
+          const step = 360 / HERO_ORBIT_SKILLS.length;
+          const angle = step * i - 90;
+          return (
+            <div
+              key={name}
+              className="absolute left-1/2 top-1/2"
+              style={{
+                transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(calc(-1 * clamp(3.1rem, 24.5vmin, 5.35rem)))`,
+              }}
+            >
+              <motion.div
+                animate={reduce ? undefined : { rotate: -360 }}
+                transition={
+                  reduce
+                    ? undefined
+                    : {
+                        duration: orbitDuration,
+                        ease: "linear",
+                        repeat: Infinity,
+                      }
+                }
+              >
+                <SkillIcon name={name} variant="hero" />
+              </motion.div>
+            </div>
+          );
+        })}
       </motion.div>
     </div>
   );
 }
-

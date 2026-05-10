@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { siGithub, siGitlab, siGmail, siX } from "simple-icons/icons";
+import { siGithub, siGitlab, siGmail, siInstagram, siX } from "simple-icons/icons";
 
 type SimpleIcon = {
   title: string;
@@ -40,30 +40,43 @@ function IconBadge({ icon }: { icon: SimpleIcon }) {
 export function SocialLinks({
   github = "https://github.com/husnain-builds",
   linkedin = "https://www.linkedin.com/in/husnain-arshad-2aba941b5/",
+  instagram = "https://instagram.com/husnaincodes/",
   email = "mailto:husnainarshad674@gmail.com",
   gitlab,
   x,
+  layout = "wrap",
 }: {
   github?: string;
   linkedin?: string;
+  instagram?: string;
   email?: string;
   gitlab?: string;
   x?: string;
+  layout?: "wrap" | "stack";
 }) {
   const items: Item[] = [
     { label: "GitHub", href: github, icon: siGithub },
     { label: "LinkedIn", href: linkedin, icon: linkedInIcon },
+    { label: "Instagram", href: instagram, icon: siInstagram },
     { label: "Email", href: email, icon: siGmail },
     ...(gitlab ? [{ label: "GitLab", href: gitlab, icon: siGitlab }] : []),
     ...(x ? [{ label: "X", href: x, icon: siX }] : []),
   ];
 
+  const row =
+    layout === "stack"
+      ? "flex flex-col gap-2"
+      : "mt-5 flex flex-wrap items-center gap-3";
+  const linkBase =
+    layout === "stack"
+      ? "group inline-flex w-full items-center justify-start gap-2 rounded-xl border border-zinc-200/70 bg-white/50 px-3 py-2.5 text-sm font-medium text-zinc-900 shadow-sm backdrop-blur transition hover:bg-white/80 dark:border-zinc-800/70 dark:bg-zinc-950/20 dark:text-zinc-50 dark:hover:bg-zinc-900/50"
+      : "group inline-flex items-center gap-2 rounded-full border border-zinc-200/70 bg-white/50 px-3 py-2 text-sm font-medium text-zinc-900 shadow-sm backdrop-blur transition hover:bg-white/80 dark:border-zinc-800/70 dark:bg-zinc-950/20 dark:text-zinc-50 dark:hover:bg-zinc-900/50";
+
   return (
-    <div className="mt-5 flex flex-wrap items-center gap-3">
+    <div className={row}>
       {items.map((item) => {
         const isExternal = item.href.startsWith("http");
-        const common =
-          "group inline-flex items-center gap-2 rounded-full border border-zinc-200/70 bg-white/50 px-3 py-2 text-sm font-medium text-zinc-900 shadow-sm backdrop-blur transition hover:bg-white/80 dark:border-zinc-800/70 dark:bg-zinc-950/20 dark:text-zinc-50 dark:hover:bg-zinc-900/50";
+        const common = linkBase;
 
         return isExternal ? (
           <a

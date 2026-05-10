@@ -2,6 +2,7 @@
   {
     "title": "OpenLetter Connect",
     "slug": "openletter-connect",
+    "featured": true,
     "description": "A mailing automation platform where users create templates, manage contacts, and execute mailing campaigns.",
     "longDescription": "Developed a scalable mailing platform enabling users to create templates, manage contacts, and place orders. Enhanced the system using agentic microservices where user goals trigger automated workflows handled by agents responsible for order creation, contact processing, and dispatch.",
     "techStack": [
@@ -25,6 +26,7 @@
   {
     "title": "InvoTeams",
     "slug": "invoteams",
+    "featured": true,
     "description": "A collaborative project management platform similar to freelance marketplaces.",
     "longDescription": "Built dashboards and task workflows for team collaboration. Integrated APIs and optimized performance for real-time updates.",
     "techStack": [
@@ -46,6 +48,7 @@
   {
     "title": "Predicto",
     "slug": "predicto",
+    "featured": true,
     "description": "A prediction marketplace where users forecast outcomes.",
     "longDescription": "Developed dynamic UI using React and Redux with real-time API integrations to support prediction-based interactions.",
     "techStack": [

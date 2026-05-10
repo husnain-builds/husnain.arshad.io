@@ -6,7 +6,6 @@ import { Container } from "@/components/Container";
 
 const nav = [
   { href: "/projects", label: "Projects" },
-  // { href: "/blog", label: "Blog" },
 ] as const;
 
 export function SiteHeader() {
@@ -21,18 +20,18 @@ export function SiteHeader() {
         Skip to content
       </a>
 
-      <div className="border-b border-zinc-800/60 bg-zinc-950/65 backdrop-blur supports-backdrop-filter:bg-zinc-950/50">
-        <div className="h-px bg-linear-to-r from-transparent via-orange-400/40 to-transparent" />
+      <div className="border-b border-zinc-800/60 bg-zinc-950/80 backdrop-blur-md supports-backdrop-filter:bg-zinc-950/70">
+        <div className="h-px bg-linear-to-r from-transparent via-orange-400/45 to-transparent" />
         <Container className="flex h-14 items-center justify-between">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 font-semibold tracking-tight text-zinc-50"
-        >
-          <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-white/5 text-orange-300">
-            H
-          </span>
-          <span>Husnain Arshad</span>
-        </Link>
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2.5 font-semibold tracking-tight text-zinc-50"
+          >
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-orange-400/20 to-violet-500/15 text-xs font-bold text-orange-200">
+              HA
+            </span>
+            <span className="hidden sm:inline">Husnain Arshad</span>
+          </Link>
           <div className="flex items-center gap-2">
             <nav className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1 text-sm text-zinc-300 md:flex">
               {nav.map((item) => {
@@ -46,7 +45,7 @@ export function SiteHeader() {
                     className={[
                       "rounded-full px-3 py-1.5 transition",
                       active
-                        ? "bg-white/10 text-white"
+                        ? "bg-white/15 text-white"
                         : "hover:bg-white/10 hover:text-white",
                     ].join(" ")}
                   >
@@ -68,4 +67,3 @@ export function SiteHeader() {
     </header>
   );
 }
-

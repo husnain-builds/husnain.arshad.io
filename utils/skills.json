@@ -1,0 +1,22 @@
+[
+  { "name": "TypeScript", "category": "Language", "level": 95 },
+  { "name": "JavaScript", "category": "Language", "level": 95 },
+  { "name": "React.js", "category": "Frontend", "level": 95 },
+  { "name": "Next.js", "category": "Frontend", "level": 90 },
+  { "name": "Redux", "category": "Frontend", "level": 88 },
+  { "name": "Node.js", "category": "Backend", "level": 85 },
+  { "name": "PostgreSQL", "category": "Data", "level": 82 },
+  { "name": "REST APIs", "category": "Integration", "level": 90 },
+  { "name": "GraphQL", "category": "Integration", "level": 78 },
+  { "name": "Gatsby.js", "category": "Frontend", "level": 80 },
+  { "name": "Tailwind CSS", "category": "Styling", "level": 92 },
+  { "name": "Microservices", "category": "Architecture", "level": 80 },
+  { "name": "Redis", "category": "Data", "level": 72 },
+  { "name": "Git", "category": "Tooling", "level": 90 },
+  { "name": "Performance", "category": "Practice", "level": 88 },
+  { "name": "Accessibility", "category": "Practice", "level": 85 },
+  { "name": "Framer Motion", "category": "Frontend", "level": 82 },
+  { "name": "Responsive UI", "category": "Design", "level": 92 },
+  { "name": "Design systems", "category": "Design", "level": 84 },
+  { "name": "Testing", "category": "Quality", "level": 78 }
+]

@@ -42,6 +42,7 @@ const ICONS: Record<string, SimpleIcon> = {
   typescript: siTypescript,
   react: siReact,
   reactjs: siReact,
+  "react.js": siReact,
   "react js": siReact,
   "next.js": siNextdotjs,
   nextjs: siNextdotjs,
@@ -74,9 +75,12 @@ const ICONS: Record<string, SimpleIcon> = {
 export function SkillIcon({
   name,
   className = "",
+  variant = "default",
 }: {
   name: string;
   className?: string;
+  /** `hero`: muted glass chip for orbit / decorative contexts */
+  variant?: "default" | "hero";
 }) {
   const icon = ICONS[norm(name)];
   if (!icon) {
@@ -86,6 +90,29 @@ export function SkillIcon({
         aria-hidden="true"
       >
         {name.slice(0, 1).toUpperCase()}
+      </span>
+    );
+  }
+
+  if (variant === "hero") {
+    return (
+      <span
+        className={`inline-flex h-9 w-9 items-center justify-center rounded-xl border border-white/9 bg-zinc-950/55 text-zinc-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md dark:border-white/10 dark:bg-zinc-950/65 ${className}`}
+        style={{
+          color: `color-mix(in oklab, #${icon.hex} 72%, white)`,
+        }}
+        title={icon.title}
+        aria-hidden="true"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          className="h-4.5 w-4.5 opacity-95"
+          fill="currentColor"
+          role="img"
+          aria-label={icon.title}
+        >
+          <path d={icon.path} />
+        </svg>
       </span>
     );
   }
