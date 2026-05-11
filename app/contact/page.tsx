@@ -3,8 +3,8 @@ import { Card } from "@/components/ui";
 import { SocialLinks } from "@/components/SocialLinks";
 import { ContactForm } from "@/app/contact/ContactForm";
 
-const PHONE_DISPLAY = "0332-2992333";
-const PHONE_TEL = "+923322992333";
+const PHONE_DISPLAY = "0332-4992333";
+const PHONE_TEL = "+923324992333";
 
 export default function ContactPage() {
   return (
